@@ -1,5 +1,5 @@
 # Gencode annotation
-get-gencode-annotation.sh is a script that downloads a specified gencode annotation in gff3 format and generates several useful bed files. We use it to generate the annotation files we use in our bioinformatic projects.
+`get-gencode-annotation.sh` is a script that downloads a specified gencode annotation in gff3 format and generates several useful bed files. We use it to generate the annotation files we use in our bioinformatic projects.
 
 ---
 
@@ -9,9 +9,9 @@ The script is run through the terminal in an UNIX based system (Linux, Mac, etc.
 
 If you have questions, problems or suggestions, contact David Valle-Garcia (david dot valle dot edu -at- gmail dot com)
 
-get-gencode-annotation.sh will perform 3 steps: 
+`get-gencode-annotation.sh` will perform 3 steps: 
 
-### Step 1: Download GFF3 files
+#### Step 1: Download GFF3 files
 
 It will connect to Gencode's FTP site and download the indicated gff3 gene annotation. 
 
@@ -19,7 +19,7 @@ Gencode includes a version on its ids that is, for most purposes, not very usefu
 
 So, if an id was for example ENSG00000290825.1, the script will change it to ENSG00000290825. This allows for some comparisons between different gene annotation versions.
 
-### Step 2: Generate bed files
+#### Step 2: Generate bed files
 
 From the downloaded GFF3 file, the script will generate the following bed files:
 
@@ -39,7 +39,7 @@ It will also generate tab-separated lists with:
 * gene_id transcript_id
 * gene_id gene_type
 
-### Step 3: Download transcript sequences
+#### Step 3: Download transcript sequences
 
 It will connect to Gencode's FTP site and download the transcript fasta sequence that later may be used to generate indexes for salmon or kallisto. 
 
