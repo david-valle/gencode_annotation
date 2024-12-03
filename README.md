@@ -92,9 +92,9 @@ bash get-gencode-annotation.sh human hg38 47
 ```
 This asumes that you have a .len file with chromosomes lengths in the folder where you are running the script (we provide .len files for human hg38 and mouse mm39 genomes in which the latest gencode annotations are based).
 
-Note: if you add the script to your PATH, just type the script's name, without the 'bash' part
+Note: if you add the script to your PATH, just type the script's name, without the 'bash' part.
 
-Additionally, you can indicate whether you want to perform any of the three steps (see description for details) by writing YES or NO in sequential order. So, if you only want to download the GFF3 file and get the bed files (steps 1 and 2) but you don't want to download the transcript fasta, type:
+Additionally, you can indicate whether you want to perform any of the three steps (see description for details) by writing YES or NO in sequential order. So, if you only want to download the GFF3 file and get the bed files (steps 1 and 2) but you don't want to download the transcript sequences, type:
 ```
 bash get-gencode-annotation.sh human hg38 47 YES YES NO
 ```
