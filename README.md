@@ -52,7 +52,7 @@ As with the GFF3, it will delete the id's version.
 ### Software
 * bedtools
 
-From our [useful_scrits](https://github.com/david-valle/useful_scripts):
+From our [useful_scripts](https://github.com/david-valle/useful_scripts):
 * BedFlank.pl
 * gff3ToBed.pl
 
