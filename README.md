@@ -57,8 +57,8 @@ From our [useful_scripts](https://github.com/david-valle/useful_scripts):
 * gff3ToBed.pl
 
 #### Compatible OS*:
-* Ubuntu 20.04.5 LTS
-* MacOS 14.3
+* Ubuntu 24.04.1 LTS
+* MacOS 14.6
 
 \* The script should run in any UNIX based OS, but testing is required.
 
