@@ -3,7 +3,7 @@
 # This script downloads gff3 files from gencode and generates annotation files 
 
 PROGRAM="get-gencode-annotation.sh"
-VERSION="1.0"
+VERSION="1.1"
 
 # If we don't have enough arguments, print the help
 if [ $# -lt "3" ]; then
@@ -87,14 +87,9 @@ if [ $BED != "NO" ]; then
 	echo "Generating bed files..."
 	
 	gzip -dc $G-gencode-$V.gff3.gz > temp-$V.gff3
-#	gzip -dc $G-gencode-$V.gff3.gz | awk '{if($3=="gene"){print $0}}' > temp-$V-gene.gff3
-#	gzip -dc $G-gencode-$V.gff3.gz | awk '{if($3=="exon"){print $0}}' > temp-$V-exon.gff3
-#	gzip -dc $G-gencode-$V.gff3.gz | awk '{if($3=="five_prime_UTR"){print $0}}' > temp-$V-5UTR.gff3
-#	gzip -dc $G-gencode-$V.gff3.gz | awk '{if($3=="three_prime_UTR"){print $0}}' > temp-$V-3UTR.gff3
-#	gzip -dc $G-gencode-$V.gff3.gz | awk '{if($3=="transcript"){print $0}}' > temp-$V-tx.gff3
 
 	# Getting gene bed file 
-	gff3ToBed.pl -f temp-$V.gff3 -t gene | sortBed -i - -faidx $G.names | uniq > $G-gencode-$V-all.bed
+	gff3ToBed.pl -f temp-$V.gff3 -t gene -af gene_type | sortBed -i - -faidx $G.names | uniq > $G-gencode-$V-all.bed
 
 	# Generating gene bed without pseudogenes 
 	grep -v "pseudogene" $G-gencode-$V-all.bed > $G-gencode-$V-gene.bed
@@ -114,7 +109,7 @@ if [ $BED != "NO" ]; then
 
 	for F in exon five_prime_UTR three_prime_UTR
 	do
-		gff3ToBed.pl -f temp-$V.gff3 -t $F | sortBed -i - -faidx $G.names | uniq | mergeBed -i - -s -c 4,5,6,7 -o distinct,distinct,distinct,distinct -delim "," | sortBed -i - -faidx $G.names > $G-gencode-$V-$F.bed
+		gff3ToBed.pl -f temp-$V.gff3 -t $F -af gene_type | sortBed -i - -faidx $G.names | uniq | mergeBed -i - -s -c 4,5,6,7 -o distinct,distinct,distinct,distinct -delim "," | sortBed -i - -faidx $G.names > $G-gencode-$V-$F.bed
 	done
 	
 	# Get list of gene_id and gene_name
