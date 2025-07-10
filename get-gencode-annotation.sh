@@ -3,7 +3,7 @@
 # This script downloads gff3 files from gencode and generates annotation files 
 
 PROGRAM="get-gencode-annotation.sh"
-VERSION="1.1"
+VERSION="1.2"
 
 # If we don't have enough arguments, print the help
 if [ $# -lt "3" ]; then
@@ -111,6 +111,9 @@ if [ $BED != "NO" ]; then
 	do
 		gff3ToBed.pl -f temp-$V.gff3 -t $F -af gene_type | sortBed -i - -faidx $G.names | uniq | mergeBed -i - -s -c 4,5,6,7 -o distinct,distinct,distinct,distinct -delim "," | sortBed -i - -faidx $G.names > $G-gencode-$V-$F.bed
 	done
+	
+	# Generate intron file by subtracting exons to genes
+	subtractBed -a $G-gencode-$V-gene.bed -b $G-gencode-$V-exon.bed -s > $G-gencode-$V-intron.bed
 	
 	# Get list of gene_id and gene_name
 	cut -f 4,5 $G-gencode-$V-all.bed | sort -k2 > $G-gencode-$V-gene_id-gene_name.txt
