@@ -35,7 +35,7 @@ From the downloaded GFF3 file, the script will generate the following bed files:
 -   promoters (-1kb from TSS, excluding pseudogenes)
 -   intergenic regions
 
-It will also generate tab-separated lists with: \* gene_id gene_name \* gene_id transcript_id \* gene_id gene_type
+It will also generate tab-separated lists with: \* gene_id gene_name \* transcript_id gene_id \* gene_id gene_type
 
 ### Step 3: Download transcript sequences
 
