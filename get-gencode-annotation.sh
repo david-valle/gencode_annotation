@@ -121,8 +121,8 @@ if [ $BED != "NO" ]; then
 	# Get list of gene_id and gene_type
 	cut -f 4,7 $G-gencode-$V-all.bed | sort | uniq > $G-gencode-$V-gene_id-gene_type.txt
 	
-	# Get list of gene_id and  transcript_id
-	gff3ToBed.pl -f temp-$V.gff3 -t transcript -c5 transcript_id | cut -f 4,5 | sort -k1 > $G-gencode-$V-gene_id-transcript_id.txt
+	# Get list of transcript_id and gene_id  
+	gff3ToBed.pl -f temp-$V.gff3 -t transcript -c4 transcript_id -c5 gene_id | cut -f 4,5 | sort -k2 > $G-gencode-$V-transcript_id-gene_id.txt
 	
 	rm temp-${V}*
 	echo "All bed files have been generated."
